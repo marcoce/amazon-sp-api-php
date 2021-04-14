@@ -122,8 +122,16 @@ trait SellingPartnerApiRequest
                     $content = json_decode($content);
                 }
             }
-//            var_dump($content);
-//            exit();
+
+            //var_dump($content);
+            //exit();
+
+            // TODO: (MARCO) "ObjectSerializer::deserialize($content, $returnType, [])" non funziona bene, svuota la risposta!
+            return [
+                $content,
+                $response->getStatusCode(),
+                $response->getHeaders(),
+            ];
 
             return [
                 ObjectSerializer::deserialize($content, $returnType, []),
