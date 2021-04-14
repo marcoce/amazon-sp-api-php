@@ -161,7 +161,8 @@ class CatalogApi
             throw new InvalidArgumentException('Missing the required parameter $asin when calling getCatalogItem');
         }
 
-        $resourcePath = '/catalog/v0/items/{asin}';
+        //$resourcePath = '/catalog/v0/items/{asin}';
+        $resourcePath = '/catalog/2020-12-01/items/{asin}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -170,8 +171,20 @@ class CatalogApi
 
         // query params
         if (null !== $marketplace_id) {
-            $queryParams['MarketplaceId'] = ObjectSerializer::toQueryValue($marketplace_id);
+            //$queryParams['MarketplaceId'] = ObjectSerializer::toQueryValue($marketplace_id);
+            $queryParams['marketplaceIds'] = ObjectSerializer::toQueryValue($marketplace_id);
         }
+
+        /*$queryParams['includedData'] = ObjectSerializer::toQueryValue([
+            'attributes',
+            'identifiers',
+            'images',
+            'productTypes',
+            'salesRanks',
+            'summaries',
+            'variations',
+            'vendorDetails'
+        ]);*/
 
         // path params
         if (null !== $asin) {
