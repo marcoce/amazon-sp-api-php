@@ -58,11 +58,19 @@ class ReportsApi
      */
     protected $headerSelector;
 
+    /**
+     * @var apiVersion
+     */
+    protected $apiVersion;
+
     public function __construct(Configuration $config)
     {
         $this->client = new Client();
         $this->config = $config;
         $this->headerSelector = new HeaderSelector();
+
+        $this->apiVersion = '2020-09-04'; // Old
+        //$this->apiVersion = '2021-06-30'; // Latest
     }
 
     /**
@@ -159,7 +167,7 @@ class ReportsApi
             throw new \InvalidArgumentException('Missing the required parameter $report_id when calling cancelReport');
         }
 
-        $resourcePath = '/reports/2020-09-04/reports/{reportId}';
+        $resourcePath = '/reports/'.$this->apiVersion.'/reports/{reportId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -263,7 +271,7 @@ class ReportsApi
             throw new \InvalidArgumentException('Missing the required parameter $report_schedule_id when calling cancelReportSchedule');
         }
 
-        $resourcePath = '/reports/2020-09-04/schedules/{reportScheduleId}';
+        $resourcePath = '/reports/'.$this->apiVersion.'/schedules/{reportScheduleId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -368,7 +376,7 @@ class ReportsApi
             throw new \InvalidArgumentException('Missing the required parameter $body when calling createReport');
         }
 
-        $resourcePath = '/reports/2020-09-04/reports';
+        $resourcePath = '/reports/'.$this->apiVersion.'/reports';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -463,7 +471,7 @@ class ReportsApi
             throw new \InvalidArgumentException('Missing the required parameter $body when calling createReportSchedule');
         }
 
-        $resourcePath = '/reports/2020-09-04/schedules';
+        $resourcePath = '/reports/'.$this->apiVersion.'/schedules';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -558,7 +566,7 @@ class ReportsApi
             throw new \InvalidArgumentException('Missing the required parameter $report_id when calling getReport');
         }
 
-        $resourcePath = '/reports/2020-09-04/reports/{reportId}';
+        $resourcePath = '/reports/'.$this->apiVersion.'/reports/{reportId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -662,7 +670,7 @@ class ReportsApi
             throw new \InvalidArgumentException('Missing the required parameter $report_document_id when calling getReportDocument');
         }
 
-        $resourcePath = '/reports/2020-09-04/documents/{reportDocumentId}';
+        $resourcePath = '/reports/'.$this->apiVersion.'/documents/{reportDocumentId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -766,7 +774,7 @@ class ReportsApi
             throw new \InvalidArgumentException('Missing the required parameter $report_schedule_id when calling getReportSchedule');
         }
 
-        $resourcePath = '/reports/2020-09-04/schedules/{reportScheduleId}';
+        $resourcePath = '/reports/'.$this->apiVersion.'/schedules/{reportScheduleId}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -977,7 +985,7 @@ class ReportsApi
             throw new \InvalidArgumentException('Missing the required parameter $report_types when calling getReportSchedules');
         }
 
-        $resourcePath = '/reports/2020-09-04/schedules';
+        $resourcePath = '/reports/'.$this->apiVersion.'/schedules';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1106,7 +1114,7 @@ class ReportsApi
      */
     protected function getReportsRequest($report_types = null, $processing_statuses = null, $marketplace_ids = null, $page_size = '10', $created_since = null, $created_until = null, $next_token = null)
     {
-        $resourcePath = '/reports/2020-09-04/reports';
+        $resourcePath = '/reports/'.$this->apiVersion.'/reports';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
